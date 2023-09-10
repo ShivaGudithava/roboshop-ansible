@@ -10,3 +10,12 @@
      enabled: yes
      daemon_reload: yes
 
+- name: Copy Systemd-setup.yml from remote to local
+  hosts: your_target_host
+  tasks:
+    - name: Copy Systemd-setup.yml
+      copy:
+        src: /path/to/remote/Systemd-setup.yml
+        dest: /path/to/local/
+        remote_src: yes
+  # Add any other required tasks
