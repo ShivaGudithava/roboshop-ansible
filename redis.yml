@@ -8,21 +8,21 @@
         state: installed
         disabled_gpg_check: true
 
-    - name: Enabled Redis Module
-      ansible.builtin.shell: yum module enabled redis:remi-6.2 -y
+    - name: Enable Redis Module
+      ansible.builtin.shell: yum module enable redis:remi-6.2 -y
 
     - name: Install Redis
       ansible.builtin.yum:
         name: redis
         state: installed
 
-    - name: Updated Listen address /etc/redis.conf
+    - name: Update Listen address /etc/redis.conf
       ansible.builtin.replace:
       path: /etc/redis.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
 
-    - name: Updated Listen address /etc/redis/redis.conf
+    - name: Update Listen address /etc/redis/redis.conf
       ansible.builtin.replace:
       path: /etc/redis/redis.conf
       regexp: '127.0.0.1'
@@ -36,9 +36,3 @@
 
 
 
-      yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
-      yum module enable redis:remi-6.2 -y
-      yum install redis -y
-      # update listen address /etc/redis.conf & vim /etc/redis/redis.conf
-      systemctl enable redis
-      systemctl restart redis
