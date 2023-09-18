@@ -14,12 +14,12 @@
         state: installed
 
     - name: Install RabbitMQ Service
-      ansible.builtin.yum:
+      ansible.builtin.systemd:
         name: rabbitmq-sever
         state: restarted
         enabled: yes
 
-    - name: Start Applications User
+    - name: Add Applications User
       community.rabbitmq.rabbitmq_user:
         user: roboshop
         password: roboshop123
